@@ -1,3 +1,6 @@
+var textArea = $(".textarea");
+var hour = $(".hour");
+
 $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 var now = moment().format("H");
@@ -14,16 +17,43 @@ var tenAM = parseInt($("#tenAM").text());
 var elevenAM = parseInt($("#eleventhAM").text());
 var twelvePM = parseInt($("#twelvePM").text());
 
-if (elevenAM === now) {
-    elevenAM.addClass("present");
-}
+// if (elevenAM === now) {
+//     elevenAM.addClass("present");
+// }
 
 $(document).ready(function() {
-    $(".saveBtn").click(function() {
-        var time = $(this).parent().attr("id");
-        console.log(time);
-        var value = $(this).siblings(".description").value();
-        localStorage.setItem(time, value)
-})
-})
+    // listen for save button clicks
+    $('.saveBtn').on('click', function() {
+      // get nearby values
+      var value = $(this)
+        .siblings('.description')
+        .val();
+      var time = $(this)
+        .siblings()
+        .attr('id');
+  
+        console.log(time, value)
+  
+      // save in localStorage
+      localStorage.setItem(time, value);
+  
+      // Show notification that item was saved to localStorage by adding class 'show'
+      $('.notification').addClass('show');
+  
+      // Timeout to remove 'show' class after 5 seconds
+      setTimeout(function() {
+        $('.notification').removeClass('show');
+      }, 5000);
+    });
+});
 
+function timeTracker() {
+    var curHour = moment().hours();
+    if (curHour) {
+        console.log(curHour)
+    $(".description").removeClass(".present").addClass(".past");
+    } else {
+    $(".description").removeClass(".present").addClass(".future");
+};
+}
+console.log(timeTracker())
