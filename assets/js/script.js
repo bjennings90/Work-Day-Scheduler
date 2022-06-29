@@ -1,5 +1,6 @@
 var textArea = $(".textarea");
 var hours = $(".hours");
+var currentTime = $("#currentDay");
 
 
 
@@ -49,10 +50,26 @@ $(document).ready(function () {
     });
 });
 
+// function timeTracker() {
+//     var curHour = moment().hours(); { 
+        
+//         if (currentTime > aSpecificTimeBlock) {
+//         aSpecificTimeBlock.className = ".past";
+//      } if else { (currentTime < aSpecificTimeBlock); {
+//         aSpecificTimeBlock.className = ".present";
+//      } else {
+//         aSpecificTimeBlock.className = ".future";
+//      };
+//     };
+// };
+// };
 function timeTracker() {
     var curHour = moment().hours();
+    console.log(curHour);
+    console.log(onePM);
+    console.log($(".description").each());
     if (curHour) {
-        console.log(curHour)
+        
         $(".description").each(function (timeTracker) {
             if ($("textArea").removeClass(".present").addClass(".past"));
             if ($("textArea").removeClass(".present").addClass(".future"));
@@ -60,7 +77,9 @@ function timeTracker() {
         });
     }
 };
-console.log(timeTracker())
+
+timeTracker();
+
 
 
 // $(".description").each(function() {
